@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue JS Basics Concepts</title>
+    <link rel="stylesheet" href="./app.css" />
+  </head>
+  <body>
+    <!-- Interpolation -->
+    <header>
+      <h1>Vue Course Goals</h1>
+    </header>
+    <section id="user-goal">
+      <h2>My Course Goal</h2>
+      <!-- interpolation -->
+      <p>{{ goalA }}</p>
+      <p>{{ goalB }}</p>
+      <p>{{ outputGoal() }}</p>
+      <!-- v-bind directive -->
+      <p>Learn more <a v-bind:href="link">Vue Docs</a></p>
+      <!-- v-html directive -->
+      <p v-html="note"></p>
+    </section>
+
+    <!-- Events -->
+    <header>
+      <h1>Vue Events</h1>
+    </header>
+    <section id="events">
+      <h2>Events in Action</h2>
+      <!-- v-on directive -->
+      <button v-on:click="add(1)">Add 1</button>
+      <button v-on:click="add(10)">Add 10</button>
+      <button v-on:click="reduce(1)">Reduce 1</button>
+      <button v-on:click="reduce(5)">Reduce 5</button>
+      <p>Result: {{ counter }}</p>
+      <label>Name :</label>
+      <input type="text" v-on:input="seName($event,'Rady')" />
+      <p>Your name is :{{ fullName }}</p>
+      <!-- 
+          v-model directive (two way binding)
+          v-model = [v-bind:value + v-on:input]
+       -->
+      <label>Email :</label>
+      <input type="text" v-model="email" />
+      <p>Your email is :{{ email }}</p>
+    </section>
+
+    <header>
+      <h1>Vue Dynamic Styling</h1>
+    </header>
+    <section id="styling">
+      <!-- <div class="demo" :style="{
+        backgroundColor:boxA?'cyan':'#fff',
+        borderColor:boxA?'tomato':'#ccc'
+      }" @click="selectBox('A')"></div> -->
+      <div :class="['demo',{activeBox:boxA}]" @click="selectBox('A')"></div>
+      <!-- <div :class="{demo:true,activeBox:boxA}" @click="selectBox('A')"></div> -->
+      <div :class="{demo:true,activeBox:boxB}" @click="selectBox('B')"></div>
+      <div :class="{demo:true,activeBox:boxC}" @click="selectBox('C')"></div>
+    </section>
+
+    <!-- import vue via CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
