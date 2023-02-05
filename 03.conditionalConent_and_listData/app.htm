@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue JS Basics Concepts</title>
+    <link rel="stylesheet" href="./app.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Vue Course Goals</h1>
+    </header>
+    <section id="user-goals">
+      <h2>My course goals</h2>
+      <input type="text" v-model="enteredGoal" />
+      <button @click="addGoal">Add Goal</button>
+      <!-- v-if Conditional Directive -->
+      <p v-if="goals.length == 0">
+        No goals have been added yet - please start adding some!
+      </p>
+      <!-- v-show Conditional Directive -->
+      <ul v-show="goals.length > 0">
+        <li v-for="(goal,index) in goals" :key="index">
+          {{ index+1 }} - {{ goal }}
+          <button
+            @click="removeGoal(index)"
+            title="remove goal"
+            class="deleteGoal"
+          >
+            x
+          </button>
+        </li>
+      </ul>
+    </section>
+
+    <header>
+      <h1>Vue Course Goals</h1>
+    </header>
+    <section id="user-goals">
+      <h2>Author Info</h2>
+      <ul>
+        <li v-for="(value,key) in sallam">{{ key }} : {{ value }}</li>
+      </ul>
+    </section>
+    <!-- import vue via CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
