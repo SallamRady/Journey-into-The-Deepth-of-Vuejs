@@ -49,9 +49,9 @@
           <li v-for="logMessage in logMessages">
             <span
               :class="{'log--player': logMessage.who === 'Player', 'log--monster': logMessage.who === 'Monster'}"
-              >{{ logMessage.who === 'Player' ? 'Player' : 'Monster'
-              }}</span
             >
+              {{ logMessage.who === 'Player' ? 'Player' : 'Monster'}}
+            </span>
             <span v-if="logMessage.what === 'heal'">
               heals himself for
               <span class="log--heal">{{ logMessage.value }}</span></span
