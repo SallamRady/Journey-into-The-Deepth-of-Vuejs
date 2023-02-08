@@ -2,18 +2,22 @@
   <header>
     <h1>FriendList</h1>
   </header>
-  <section id="app">
+  <NewFriend @add-friend="addFriend"></NewFriend>
+  <section id="friendsList">
     <ul>
-      <FriendContact></FriendContact>
+      <FriendContact v-for="friend in friends" :key="friend.id" :friend="friend" @toggle-favorite="toggleFavorite" @delete-friend="deleteFriend"></FriendContact>
+      <!-- <FriendContact :is-favorite="true" name="Sallam Rady" email-address="sallam@tes.com" phone="098 478 5619"></FriendContact>
+      <FriendContact  name="Sallam Rady" email-address="sallam@tes.com" phone="098 478 5619"></FriendContact> -->
     </ul>
   </section>
 </template>
 
 <script>
 import FriendContact from "./components/FriendConcat.vue";
+import NewFriend from "./components/NewFriend.vue";
 
 export default {
-  components: { FriendContact },
+  components: { FriendContact,NewFriend },
   data() {
     return {
       friends: [
@@ -22,16 +26,31 @@ export default {
           name: "Ibrahim El-Morshady",
           email: "ibrahim@test.com",
           phone: "098 478 5619",
+          isFavorite:true
         },
         {
           id: "102",
           name: "Ahmed Ezzat",
           email: "ahmed@test.com",
           phone: "098 408 3579",
+          isFavorite:false
         },
       ],
     };
   },
+  methods:{
+    toggleFavorite(friendId){
+      let selectedFriend = this.friends.find(item=>item.id === friendId);
+      selectedFriend.isFavorite = !selectedFriend.isFavorite;
+    },
+    addFriend(name,email,phone,isFavorite){
+      let id = this.friends.length + 101;
+      this.friends.push({id,name,email,phone,isFavorite});
+    },
+    deleteFriend(friendId){
+      this.friends = this.friends.filter(item=>item.id != friendId);
+    }
+  }
 };
 </script>
 
@@ -60,7 +79,7 @@ header {
   max-width: 40rem;
 }
 
-#app ul {
+#friendsList ul {
   margin: 0;
   padding: 0;
   list-style: none;
