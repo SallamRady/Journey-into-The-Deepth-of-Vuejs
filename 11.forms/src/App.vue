@@ -1,13 +1,15 @@
 <template>
   <the-form></the-form>
+  <ListResult></ListResult>
 </template>
 
 <script>
 import TheForm from './components/TheForm.vue';
+import ListResult from './components/ListResult.vue';
 
 export default {
   components: {
-    TheForm
+    TheForm,ListResult
   }  
 }
 </script>
