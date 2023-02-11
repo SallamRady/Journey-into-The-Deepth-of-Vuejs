@@ -1,5 +1,6 @@
 <template>
   <form @submit.prevent="handleSubmit">
+    <h1>Job Applicant</h1>
     <div class="form-control">
       <label for="user-name">Your Name</label>
       <input id="user-name" name="user-name" type="text" v-model.trim="name" />
@@ -16,7 +17,7 @@
       <label for="referrer">How did you hear about us?</label>
       <select id="referrer" name="referrer" v-model="referrer">
         <option value="google">Google</option>
-        <option value="wom">Word of mouth</option>
+        <option value="LinkedIn">LinkedIn</option>
         <option value="newspaper">Newspaper</option>
       </select>
     </div>
@@ -87,6 +88,7 @@
       </div>
     </div>
     <div class="form-control">
+      <label>What is your level in JS?</label>
       <RatingControl
         :modelValue="modelValue"
         @update:modelValue="activeOption"
@@ -118,11 +120,21 @@ export default {
   },
   methods: {
     handleSubmit() {
-      console.log(this.name);
-      console.log(this.age);
-      console.log(this.referrer);
-      console.log(this.interest);
-      console.log(this.how);
+      //Job applicants
+      let url =
+        "https://vue-demo101-default-rtdb.firebaseio.com/job_applications.json";
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: this.name,
+          age: this.age,
+          hearBy: this.referrer,
+          JsLevel: this.modelValue,
+        }),
+      });
     },
     activeOption(opt) {
       this.modelValue = opt;
